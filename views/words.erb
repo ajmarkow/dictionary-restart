@@ -1,0 +1,24 @@
+<h1>Words</h1>
+
+<% if @words.any? %>
+    <% @words.each do |item| %>
+      <h2><% item.name %></h2>
+      <form action="/words/<%= item.wordid %>/delete" method="post">
+<button type ='submit' class ='btn-danger'>Delete The Word</button>
+</form>
+<button href ='/definitions/<%= item.wordid %>/update' class ='btn-primary'>Update The Word</button>
+              <form action="/definition/<%= item.wordid %>/add" method="post">
+              <br>
+              <div class="form-group">
+                <label for="">Definition</label>
+                <input type="text"
+                  class="form-control" name="definition" aria-describedby="helpId2" placeholder="">
+                <small id="helpId2" class="form-text text-muted">Enter  the extra definition here.</small>
+              </div>
+                        <button type="submit" class="btn btn-primary btn-md btn-block">Add a definition</button>
+          </form>
+    <% end %>
+<% else %>
+  <p>There are currently no words to display.</p>
+<% end %>
+<a href="/words/new/">Add a new word</a>

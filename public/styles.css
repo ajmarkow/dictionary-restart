@@ -1,0 +1,12 @@
+body {
+  font-family: "Courier Prime", monospace;
+  background: black;
+  color: whitesmoke;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.jumbotron {
+  background: black;
+  color: whitesmoke;
+  text-align: center;
+}

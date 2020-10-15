@@ -1,55 +1,80 @@
-get("/definitions") do
+require("sinatra")
+require("sinatra/reloader")
+require("./lib/Word")
+require("./lib/Definition")
+require("pry")
+also_reload("lib/**/*.rb")
+
+get("/word/:id/definitions") do
   "what it does"
 end
 
-get("/definitions/:id") do
+get("/word/:id/definitions/:id") do
   "what it does"
 end
 
-get("/definitions/new") do
+get("/word/:id/definitions/new") do
   "what it does"
 end
 
-get("/definitions/:id/edit") do
+get("/word/:id/definitions/:id/edit") do
   "what it does"
+end
+
+get("/") do
+  @words = Word.all
+  erb(:words)
 end
 
 get("/words") do
-  "what it does"
+  @words = Word.all
+  erb(:words)
 end
 
 get("/words/:id") do
-  "what it does"
+  @word = Word.find(params[:id].to_i())
+  erb(:word)
 end
 
-get("/words/new") do
-  "what it does"
+get("/words/new/") do
+  erb(:new_word)
 end
 
 get("/words/:id/edit") do
-  "what it does"
+  @word = Word.find(params[:id].to_i())
+  erb(:edit_word)
 end
 
 delete("/words/:id") do
-  "what it does"
+  @word = Word.find(params[:id].to_i())
+  @word.delete()
+  @words = Word.all
+  erb(:words)
 end
 
-delete("/definitions/:id") do
+delete("/word/:id/definitions/:id") do
   "what it does"
 end
 
 post("/words") do
-  "what it does"
+  name = params[:wordname]
+  word = Word.new({ :name => name, :wordid => nil })
+  word.save()
+  @words = Word.all()
+  erb(:words)
 end
 
-post("/definitions") do
+post("/word/:id/definitions") do
   "what it does"
 end
 
 patch("/words/:id") do
-  "what it does"
+  @word = Word.find(params[:id].to_i())
+  @word.update(params[:name])
+  @words = Word.all
+  erb(:words)
 end
 
-patch("/definitions/:id") do
+patch("/word/:id/definitions/:id") do
   "what it does"
 end
