@@ -10,7 +10,7 @@ class Word
   end
 
   def self.find(wordid)
-    return @@words[wordid]
+    @@words[wordid]
   end
 
   def save
@@ -33,5 +33,9 @@ class Word
 
   def delete
     @@words.delete(self.wordid)
+  end
+
+  def ==(word_to_compare)
+    self.name() == word_to_compare.name()
   end
 end
