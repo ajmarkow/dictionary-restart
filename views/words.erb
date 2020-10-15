@@ -2,12 +2,14 @@
 
 <% if @words.any? %>
     <% @words.each do |item| %>
-      <h2><% item.name %></h2>
-      <form action="/words/<%= item.wordid %>/delete" method="post">
+      <h2><%= item.name %></h2>
+      <h2><%= item.id %></h2>
+      <form action="/words/<%= item.id %>" method="post">
+      <input name="_method" type="hidden" value="delete">
 <button type ='submit' class ='btn-danger'>Delete The Word</button>
 </form>
-<button href ='/definitions/<%= item.wordid %>/update' class ='btn-primary'>Update The Word</button>
-              <form action="/definition/<%= item.wordid %>/add" method="post">
+<button href ='/definitions/<%= item.id %>/update' class ='btn-primary'>Update The Word</button>
+              <form action="/definition/<%= item.id %>" method="post">
               <br>
               <div class="form-group">
                 <label for="">Definition</label>

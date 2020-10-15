@@ -1,7 +1,7 @@
 require ("rspec")
 
 class Word
-  attr_accessor(:name, :wordid)
+  attr_accessor(:name, :id)
   @@words = {}
   @@total_rows = 0
 
@@ -9,17 +9,17 @@ class Word
     @@words.values()
   end
 
-  def self.find(wordid)
-    @@words[wordid]
+  def self.find(id)
+    @@words[id]
   end
 
   def save
-    @@words[self.wordid] = Word.new({ :name => self.name, :wordid => self.wordid })
+    @@words[self.id] = Word.new({ :name => self.name, :id => self.id })
   end
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @wordid = @wordid || @@total_rows += 1
+    @id = @id || @@total_rows += 1
   end
 
   def self.clear
@@ -32,10 +32,10 @@ class Word
   end
 
   def delete
-    @@words.delete(self.wordid)
+    @@words.delete(self.id)
   end
 
   def ==(word_to_compare)
-    self.name() == word_to_compare.name()
+    self.name() == word_to.name()
   end
 end
