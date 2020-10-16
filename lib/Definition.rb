@@ -40,7 +40,7 @@ class Definition
     @@total_rows = 0
   end
 
-  def self.verbosefind(word)
+  def self.verbosefind(wordid)
     definitions = []
     @@definitions.values.each do |entry|
       if entry.wordid == wordid

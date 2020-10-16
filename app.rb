@@ -33,7 +33,15 @@ end
 # ✓
 get("/words/:id") do
   @word = Word.find(params[:id].to_i())
+  @definitions = Definition.verbosefind(@word.id)
   erb(:edit_word)
+end
+
+get("/definitions/:id") do
+  @definition = Definition.all
+  # @definition = @definitions.find(params[:id].to_i).to_s
+  binding.pry
+  erb(:definition)
 end
 # ✓
 get("/words/new") do
@@ -63,10 +71,18 @@ post("/words") do
   redirect to (:words)
 end
 
-post("/word/:id/definitions") do
-  @word = Word.find(params[:id.to_i])
-  newdefinition = Definition.new ({ :text => params[:definiton - text], :id => nil, :wordid => @word.id })
+get ("/words/:id/definitions") do
+  @word = Word.find(params[:id].to_i)
+  erb(:definitions)
+end
+
+post("/words/:id/definitions") do
+  @word = Word.find(params[:id].to_i)
+  text = params[:definition].to_s
+  binding.pry
+  newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :wordid => @word.id })
   newdefinition.save()
+  @words = Word.all
   erb(:words)
 end
 

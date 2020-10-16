@@ -12,5 +12,19 @@
   <input name="_method" type="hidden" value="Delete">
   <button type="submit" class="btn btn-primary">Delete this word</button>
 </form>
+<hr>
+<h1> Definitions for <%= @word.name %></h1>
+<% if @definitions.any? %>
+<% @definitions.each do |definition| %>
+      <a href="/definitions/<%= definition.id %>"><%= definition.text %></A>
+      <br>
+      <hr>
+      <% end %>
+<% else %>
+    <h1>There are currently no definitions 😞</h1>
+<% end %>
+<a href="/words/<%= @word.id %>/definitions">Add or update the definition</a>
+<br>
 <a href="/words"> Back to your dictionary.</a>
+<br>
 <p><a href="/words">Return to word list</a></p>
