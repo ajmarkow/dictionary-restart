@@ -1,1 +1,7 @@
-<h1> Word: 
+<h1> Word: <%= @word.name %><h1>
+<h3>Definitions: </h3>
+<form action="words/<%= @word.id %>/definitions" method="post">
+<label for= "definition-text">New Definition</label>
+<input id="definition-text" name="definition-text" type="text">
+<button type="submit" class="btn-success">Add a definition.</button>
+</form>

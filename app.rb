@@ -20,59 +20,60 @@ also_reload("lib/**/*.rb")
 # get("/word/:id/definitions/:id/edit") do
 #   "what it does"
 # end
-
+# ✓
 get("/") do
   @words = Word.all
-  erb(:words)
+  erb(:new_word)
 end
-
+# ✓
 get("/words") do
   @words = Word.all
-  @word = Word.find(params[:id].to_i())
   erb(:words)
 end
-
+# ✓
 get("/words/:id") do
   @word = Word.find(params[:id].to_i())
   erb(:word)
 end
-
+# ✓
 get("/words/new/") do
   erb(:new_word)
 end
-
+# ✓
 get("/words/:id/edit") do
-  @words = Word.all
-  @word = @words.find(params[:id].to_i())
+  @word = Word.find(params[:id].to_i)
   erb(:edit_word)
 end
-
+# ✓
 delete("/words/:id") do
-  @words = Word.all
-  word = @words.find(params[:id].to_i())
-  word.delete()
+  @word = Word.find(params[:id].to_i())
+  @word.delete
   erb(:words)
 end
 
 # delete("/word/:id/definitions/:id") do
 #   "what it does"
 # end
-
+# ✓
 post("/words") do
   name = params[:wordname]
-  word = Word.new({ :name => name, :wordid => nil })
+  word = Word.new({ :name => @name, :wordid => nil })
   word.save()
-  @words = Word.all()
   redirect to (:words)
 end
 
 post("/word/:id/definitions") do
-  "what it does"
+  @word = Word.find(params[:id.to_i])
+  newdefinition = Definition.new ({ :text => params[:definiton - text], :id => nil, :wordid => @word.id })
+  newdefinition.save()
+  erb(:words)
 end
 
 patch("/words/:id") do
-  @word = Word.find(params[:id].to_i())
+  # id = params[:id].to_i
+  # @word = Word.find(id)
   @word.update(params[:name])
+  @word.save()
   @words = Word.all
   erb(:words)
 end

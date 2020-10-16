@@ -36,6 +36,6 @@ class Word
   end
 
   def ==(word_to_compare)
-    self.name() == word_to.name()
+    self.name() == word_to_compare.name()
   end
 end
