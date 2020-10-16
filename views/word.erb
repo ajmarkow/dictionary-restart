@@ -1,9 +1,10 @@
-
-<% if @word.getdefinition.any? %>
-<em><h2><%= @word.name %> </h2></em>
-<b>Defined as - <%= @definition.text %></b>
+<% if @definitions.any? %>
+<% @definitions.each do |definition| %>
+      <a href="/words/<%= @definitions.id %>"><%= word.text %></A>
+      <% end %>
 <% else %>
-  <p>There are currently no definitions to display.</p>
+    <h1>There are currently no definitions 😞</h1>
+    <a href="words/<%= definition.id %>/definitions">Lets add a new definition!</a>
 <% end %>
-<a href="/words/<%= @word.id %>/edit">Add or update the definition</a>
+<a href="/words/<%= definitions.id %>/edit">Add or update the definition</a>
 <a href="/words"> Back to your dictionary.</a>

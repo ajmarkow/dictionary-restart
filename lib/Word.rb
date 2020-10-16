@@ -39,7 +39,7 @@ class Word
     self.name() == word_to_compare.name()
   end
 
-  def getdefinition
-    Definition.verbosefind(self.name)
+  def get_definition
+    Definition.verbosefind(self.id)
   end
 end

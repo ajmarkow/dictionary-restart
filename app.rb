@@ -34,7 +34,7 @@ end
 # ✓
 get("/words/:id") do
   @word = Word.find(params[:id].to_i())
-  erb(:word)
+  erb(:edit_word)
 end
 # ✓
 get("/words/new/") do
@@ -49,7 +49,7 @@ end
 delete("/words/:id") do
   @word = Word.find(params[:id].to_i())
   @word.delete
-  erb(:words)
+  redirect to(:words)
 end
 
 # delete("/word/:id/definitions/:id") do
@@ -58,8 +58,8 @@ end
 # ✓
 post("/words") do
   name = params[:wordname]
-  word = Word.new({ :name => name, :id => nil })
-  word.save()
+  @word = Word.new({ :name => name, :id => nil })
+  @word.save()
   redirect to (:words)
 end
 
@@ -71,8 +71,8 @@ post("/word/:id/definitions") do
 end
 
 patch("/words/:id") do
-  # id = params[:id].to_i
-  # @word = Word.find(id)
+  id = params[:id].to_i
+  @word = Word.find(id)
   @word.update(params[:name])
   @word.save()
   @words = Word.all
