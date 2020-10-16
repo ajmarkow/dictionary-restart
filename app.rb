@@ -28,6 +28,7 @@ end
 # ✓
 get("/words") do
   @words = Word.all
+  @word = Word.find(params[:id].to_i)
   erb(:words)
 end
 # ✓
@@ -57,7 +58,7 @@ end
 # ✓
 post("/words") do
   name = params[:wordname]
-  word = Word.new({ :name => @name, :wordid => nil })
+  word = Word.new({ :name => name, :id => nil })
   word.save()
   redirect to (:words)
 end

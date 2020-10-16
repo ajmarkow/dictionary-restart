@@ -5,6 +5,11 @@ class Word
   @@words = {}
   @@total_rows = 0
 
+  def initialize(attributes)
+    @name = attributes.fetch(:name)
+    @id = attributes.fetch(:id) || @@total_rows += 1
+  end
+
   def self.all
     @@words.values()
   end
@@ -15,11 +20,6 @@ class Word
 
   def save
     @@words[self.id] = Word.new({ :name => self.name, :id => self.id })
-  end
-
-  def initialize(attributes)
-    @name = attributes.fetch(:name)
-    @id = @id || @@total_rows += 1
   end
 
   def self.clear
@@ -37,5 +37,9 @@ class Word
 
   def ==(word_to_compare)
     self.name() == word_to_compare.name()
+  end
+
+  def getdefinition
+    Definition.verbosefind(self.name)
   end
 end

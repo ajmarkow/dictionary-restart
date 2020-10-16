@@ -39,4 +39,14 @@ class Definition
     @@definitions = {}
     @@total_rows = 0
   end
+
+  def self.verbosefind(wordid)
+    definitions = []
+    @@definitions.values.each do |entry|
+      if entry.wordid == wordid
+        definitions.push(entry)
+      end
+    end
+    definitions
+  end
 end

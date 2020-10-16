@@ -1,7 +1,7 @@
 <h1>Your Words</h1>
 <% if @words.any? %>
 <% @words.each do |word| %>
-      <a href="/words/<% word.id %>"><%= word.name %></a>
+      <a href="/words/<%= word.id %>"><%= word.name %></A>
       <% end %>
 <% else %>
     <h1>There are currently no words 😞</h1>

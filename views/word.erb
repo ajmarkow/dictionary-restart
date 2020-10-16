@@ -1,6 +1,6 @@
-<em><h2><%= @word.name %> </h2></em>
 
-<% if @definitions.any? %>
+<% if @word.getdefinition.any? %>
+<em><h2><%= @word.name %> </h2></em>
 <b>Defined as - <%= @definition.text %></b>
 <% else %>
   <p>There are currently no definitions to display.</p>
