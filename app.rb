@@ -38,7 +38,7 @@ get("/words/:id") do
 end
 
 get("/definitions/:id") do
-  @definition = Definition.all
+  @definition = Definition.find(params[:id].to_i)
   # @definition = @definitions.find(params[:id].to_i).to_s
   binding.pry
   erb(:definition)
@@ -79,7 +79,6 @@ end
 post("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
   text = params[:definition].to_s
-  binding.pry
   newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :wordid => @word.id })
   newdefinition.save()
   @words = Word.all
