@@ -1,4 +1,4 @@
-<h1>Update <%= @word.name() %></h1>
+<h1>Update <%= @word.name %></h1>
 
 <form action="/words/<%= @word.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
@@ -6,11 +6,11 @@
   <label for="name">Change word</label>
   <input id="name" name="name" type="text">
 
-  <button type="submit">Update</button>
+  <button type="submit" class="btn btn-primary">Update</button>
 </form>
 <form action="/words/<%= @word.id %>" method="post">
   <input name="_method" type="hidden" value="Delete">
-  <button type="submit">Delete this word</button>
+  <button type="submit" class="btn btn-primary">Delete this word</button>
 </form>
 <a href="/words"> Back to your dictionary.</a>
 <p><a href="/words">Return to word list</a></p>

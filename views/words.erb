@@ -2,8 +2,12 @@
 <% if @words.any? %>
 <% @words.each do |word| %>
       <a href="/words/<%= word.id %>"><%= word.name %></A>
+      <br>
+      <hr>
       <% end %>
 <% else %>
     <h1>There are currently no words 😞</h1>
-    <a href="words/new">Lets add a new word!</a>
 <% end %>
+<br>
+<hr>
+    <a href="/">Lets add a new word!</a>

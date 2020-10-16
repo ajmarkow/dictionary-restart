@@ -28,7 +28,6 @@ end
 # ✓
 get("/words") do
   @words = Word.all
-  @word = Word.find(params[:id].to_i)
   erb(:words)
 end
 # ✓
@@ -37,11 +36,12 @@ get("/words/:id") do
   erb(:edit_word)
 end
 # ✓
-get("/words/new/") do
-  erb(:new_word)
+get("/words/new") do
+  redirect to ("/")
 end
 # ✓
 get("/words/:id/edit") do
+  # @words = Word.all
   @word = Word.find(params[:id].to_i)
   erb(:edit_word)
 end
