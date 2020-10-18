@@ -72,7 +72,7 @@ end
 
 get ("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
-  newdef = Definition.new({:text => params[:text]})
+  newdef = Definition.new({ :text => params[:text] })
   erb(:definitions)
 end
 
@@ -80,15 +80,28 @@ post("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
   wordid = @word.id
   text = params[:text].to_s
-  newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :word_id => wordid})
+  newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :word_id => wordid })
   newdefinition.save()
   # @words = Word.all
   @definitions = Definition.verbosefind(wordid)
-  binding.pry
   erb(:edit_word)
 end
 
-delete ("/words/:id/definitions")do
+delete ("/words/:id/definitions/:definition_id") do
+  selected_definition = Definition.find(params[:definition_id].to_i)
+  selected_definition.delete
+  @word = Word.find(params[:id].to_i)
+  @definitions = Definition.verbosefind(params[:id].to_i)
+  erb(:edit_word)
+end
+
+patch ("/words/:id/definitions/:definition_id") do
+  selected_definition = Definition.find(params[:definition_id].to_i)
+  newtext = params[:updated_text]
+  selected_definition.update(newtext.to_s)
+  @word=Word.find(params[:id].to_i)
+  @definitions = Definition.verbosefind(params[:id].to_i)
+  erb(:edit_word)
 end
 
 patch("/words/:id") do
@@ -99,8 +112,6 @@ patch("/words/:id") do
   @words = Word.all
   erb(:words)
 end
-
-
 
 # patch("/word/:id/definitions/:id") do
 #   "what it does"

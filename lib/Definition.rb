@@ -24,7 +24,6 @@ class Definition
 
   def save
     @@definitions[self.id] = Definition.new({ :text => self.text, :word_id => self.word_id, :id => self.id })
-    binding.pry
   end
 
   def update(text)
