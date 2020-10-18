@@ -53,7 +53,7 @@ end
 describe("find") do
   it("returns a specific word") do
     testword6 = Word.new({ :name => "motorcycle", :definition => "a vehicle with two wheels", :id => nil })
-    testword7 = Word.new({ :name => "car", :id => nil })
+    testword7 = Word.new({ :name => "car", :id => 7 })
     testword6.save()
     testword7.save()
     expect(Word.find(7)).to(eq(testword7))

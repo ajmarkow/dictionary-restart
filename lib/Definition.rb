@@ -7,11 +7,11 @@ class Definition
   def initialize(attributes)
     @text = attributes.fetch(:text)
     @word_id = attributes.fetch(:word_id)
-    @id = attributes.fetch(:id) || @@total_rows +=1
+    @id = attributes.fetch(:id) || @@total_rows += 1
   end
 
   def ==(definition_to_compare)
-    (self.text() == definition_to_compare.text()) && (self.wordid() == definition_to_compare.wordid())
+    (self.text() == definition_to_compare.text()) && (self.word_id() == definition_to_compare.word_id())
   end
 
   def self.all

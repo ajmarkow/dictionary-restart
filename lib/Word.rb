@@ -15,7 +15,7 @@ class Word
   end
 
   def self.find(id)
-    @@words[id]
+    @@words[id.to_i]
   end
 
   def save
