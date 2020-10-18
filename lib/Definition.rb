@@ -1,14 +1,13 @@
 class Definition
-  attr_reader(:id)
-  attr_accessor(:text, :wordid)
+  attr_accessor(:text, :word_id, :id)
 
   @@definitions = {}
   @@total_rows = 0
 
   def initialize(attributes)
     @text = attributes.fetch(:text)
-    @wordid = attributes.fetch(:wordid)
-    @id = id || @@total_rows += 1
+    @word_id = attributes.fetch(:word_id)
+    @id = attributes.fetch(:id) || @@total_rows +=1
   end
 
   def ==(definition_to_compare)
@@ -24,7 +23,8 @@ class Definition
   end
 
   def save
-    @@definitions[self.id] = Definition.new({ :text => self.text, :wordid => self.wordid, :id => self.id })
+    @@definitions[self.id] = Definition.new({ :text => self.text, :word_id => self.word_id, :id => self.id })
+    binding.pry
   end
 
   def update(text)
@@ -40,12 +40,13 @@ class Definition
     @@total_rows = 0
   end
 
-  def self.verbosefind(wordid)
+  def self.verbosefind(word_id)
     definitions = []
     @@definitions.values.each do |entry|
-      if entry.wordid == wordid
+      if entry.word_id == word_id
         definitions.push(entry)
       end
+      definitions
     end
     definitions
   end

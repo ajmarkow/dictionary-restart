@@ -1,3 +1,4 @@
+
 <% if @definitions.any? %>
 <% @definitions.each do |definition| %>
       <a href="/words/<%= @definitions.id %>"><%= word.text %></A>
@@ -6,5 +7,5 @@
     <h1>There are currently no definitions 😞</h1>
     <a href="words/<%= definition.id %>/definitions">Lets add a new definition!</a>
 <% end %>
-<a href="/words/<%= definitions.id %>/edit">Add or update the definition</a>
-<a href="/words"> Back to your dictionary.</a>
+
+<form action="/words/<%=

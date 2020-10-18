@@ -1,13 +1,12 @@
 <h3>Definition: </h3>
 <h1>Update <%= @definition.text %></h1>
 
-<form action="/definitions/<%= @word.id %>" method="post">
-  <input name="_method" type="hidden" value="patch">
+<form action="/words/<%= @word.id %/definitions" method="post">
 
-  <label for="name">Change word</label>
-  <input id="name" name="name" type="text">
+  <label for="name">Add definition</label>
+  <input id="text" name="text" type="text">
 
-  <button type="submit" class="btn btn-primary">Update</button>
+  <button type="submit" class="btn btn-primary">Add definition</button>
 </form>
 <form action="/words/<%= @word.id %>" method="post">
   <input name="_method" type="hidden" value="Delete">

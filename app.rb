@@ -40,7 +40,6 @@ end
 get("/definitions/:id") do
   @definition = Definition.find(params[:id].to_i)
   # @definition = @definitions.find(params[:id].to_i).to_s
-  binding.pry
   erb(:definition)
 end
 # ✓
@@ -73,16 +72,23 @@ end
 
 get ("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
+  newdef = Definition.new({:text => params[:text]})
   erb(:definitions)
 end
 
 post("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
-  text = params[:definition].to_s
-  newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :wordid => @word.id })
+  wordid = @word.id
+  text = params[:text].to_s
+  newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :word_id => wordid})
   newdefinition.save()
-  @words = Word.all
-  erb(:words)
+  # @words = Word.all
+  @definitions = Definition.verbosefind(wordid)
+  binding.pry
+  erb(:edit_word)
+end
+
+delete ("/words/:id/definitions")do
 end
 
 patch("/words/:id") do
@@ -93,6 +99,8 @@ patch("/words/:id") do
   @words = Word.all
   erb(:words)
 end
+
+
 
 # patch("/word/:id/definitions/:id") do
 #   "what it does"
