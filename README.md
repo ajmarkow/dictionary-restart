@@ -12,7 +12,7 @@ Application which provides web interface to store multiple words and word defini
 
 ## Setup/Installation Requirements
 
-Access live deployment on [heroku](https://pacific-reaches-41861.herokuapp.com/)
+Access live deployment on [heroku](https://ajdictionary.herokuapp.com/)
 
 or
 
