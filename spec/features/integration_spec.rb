@@ -73,3 +73,18 @@ feature "delete definition path", type: :feature do
     expect(page).to have_content ("fluffyboye")
   end
 end
+
+feature "delete definition path", type: :feature do
+  it("adds a definition") do
+    visit("/")
+    fill_in("wordname", :with => "FredDog")
+    click_on("Add your word!")
+   visit("/words")
+    click_on("FredDog")
+    fill_in("definitiontext", :with => "good dog")
+    click_on("Add definition")
+    fill_in("updated_text", :with => "bad dog")
+    click_on("Update good dog")
+    expect(page).to have_content ("bad dog")
+  end
+end
