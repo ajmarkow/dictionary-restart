@@ -72,14 +72,13 @@ end
 
 get ("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
-  newdef = Definition.new({ :text => params[:text] })
-  erb(:definitions)
+  erb(:edit_word)
 end
 
 post("/words/:id/definitions") do
   @word = Word.find(params[:id].to_i)
   wordid = @word.id
-  text = params[:text].to_s
+  text = params[:definitiontext].to_s
   newdefinition = Definition.new ({ :text => "#{text}", :id => nil, :word_id => wordid })
   newdefinition.save()
   # @words = Word.all
@@ -99,7 +98,7 @@ patch ("/words/:id/definitions/:definition_id") do
   selected_definition = Definition.find(params[:definition_id].to_i)
   newtext = params[:updated_text]
   selected_definition.update(newtext.to_s)
-  @word=Word.find(params[:id].to_i)
+  @word = Word.find(params[:id].to_i)
   @definitions = Definition.verbosefind(params[:id].to_i)
   erb(:edit_word)
 end
